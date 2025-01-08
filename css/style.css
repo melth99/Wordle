@@ -82,8 +82,9 @@ h1 {
       display:flex;
   }
   
-  .key--w3 {
-      width: 4.6em;
+  .key--enter {
+      width: 6em;
+      height: 3em;
   }
   
   .key--w4 {
