@@ -1,5 +1,5 @@
 // API
-
+// use localhost:5500
 // html design with alphabet keyboard
 // https://www.geeksforgeeks.org/build-a-virtual-keyboard-using-html-css-javascript/
 
@@ -49,6 +49,10 @@ let win
 let replay
 const baseURL = "https://pokeapi.co/api/v2/"
 
+h3El = document.querySelector("h3")
+
+
+
 
 
 
@@ -96,8 +100,9 @@ function fetchPokeData(pokedexNum) {
                 if (/^[a-zA-Z]+$/.test(pokeAnswer)) { //excludes pokemon with punctuation
                     answerLength = pokeAnswer.length
                     console.log(pokeAnswer, answerLength)
+                    h3El.innerText = `Only ${answerLength} guesses to beat Team Rocket!`
                 } else {
-                    console.log('pokemon with punctuation selecte')
+                    console.log('pokemon with punctuation selected, one moment')
                     startAgain()
                 }
             }
@@ -114,11 +119,16 @@ function fetchPokeData(pokedexNum) {
 
 
 }
+function tryNowDisplay(){
+
+}
+
 function selectPokemon() {
     pokedexNum = Math.floor(Math.random() * (494 - 1) + 1)
     //pokedexNum = 250 // testing ho-oh pokemon to exclude pokemon with punctuation
     console.log(pokedexNum)
     fetchPokeData(pokedexNum)
+
 
 }
 
