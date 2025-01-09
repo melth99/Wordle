@@ -215,24 +215,30 @@ function logTry() { // adding elements in unordered list HTML
 
 
 function tryColorHints(splitTry, tryLiEl, tryNum) {
+   
     pokeSplit = pokeAnswer.split('')
     for (let i = 0; i < answerLength; i++) {
         let currentSpan = tryLiEl.querySelector(`#try${tryNum}-char-${i}`)
+        let keyEl = document.querySelector(`.key--letter[data-char="${splitTry[i]}"`)
         if (currentSpan) {
             if (pokeSplit.includes(splitTry[i]) && pokeSplit[i] === splitTry[i]) {
                 console.log('COLOR HINT: G')
                 currentSpan.style.backgroundColor = 'green'
+                keyEl.style.backgroundColor = 'green'
+
 
             }
             else if (pokeSplit.includes(splitTry[i]) && pokeSplit[i] !== splitTry[i]) {
                 //yellow
                 console.log('COLOR HINT: Y')
                 currentSpan.style.backgroundColor = 'yellow'
+                keyEl.style.backgroundColor = 'yellow'
             }
             else { // letter is not in pokeAnswer
                 //grey
                 console.log('COLOR HINT: Grey')
                 currentSpan.style.backgroundColor = 'grey'
+                keyEl.style.backgroundColor = 'grey'
 
             }
         }
