@@ -38,7 +38,8 @@
 //variables
 const tryValues = {};
 let tryNum = 1;
-let pokeAnswer = ''; //keeping everything uppercase for simplicity
+let pokeAnswer = '';
+let answerLength
 let pokeSplit = pokeAnswer.split("")
 let nowTry = '';
 const inputElement = document.querySelector('input')
@@ -88,8 +89,14 @@ function fetchPokeData (pokedexNum){
     .then(data => {
             console.log('pokemon data' ,data) // all data on answer pokemon
            if (data.name) {
-                pokeAnswer = String(data.name)
-                console.log(pokeAnswer)
+                pokeAnswer = data.name.toUpperCase()
+                if (/^[a-zA-Z]+$/.test(pokeAnswer)){ //excludes pokemon with punctuation
+                    answerLength = pokeAnswer.length
+                    console.log(pokeAnswer,answerLength)
+                }else {
+                    console.log('pokemon with punctuation selecte')
+                    //startAgain()
+                }
            }
            else {
                 console.log('Issue getting pokeAnswer from json')
@@ -97,15 +104,16 @@ function fetchPokeData (pokedexNum){
 
     })
     .catch(error => {
-        console.log('Error selecting pokemon', error)
+        console.log('Error retrieving pokemon name from pokeAPI', error)
     })
         
     
 
  
 }
-function selectPokemon(data){
+function selectPokemon(){
     pokedexNum = Math.floor(Math.random() * (494-1) + 1)
+    //pokedexNum = 250 // testing ho-oh pokemon to exclude pokemon with punctuation
     console.log(pokedexNum)
     fetchPokeData(pokedexNum)
 
@@ -115,7 +123,7 @@ function selectPokemon(data){
 
 function startAgain (letter){
     console.log('start again f(x) triggered to signal new turn')
-    updateTryValue(letter)
+    selectPokemon()
 }
 
 // add enter button click functionality later
@@ -124,13 +132,13 @@ function startAgain (letter){
 //add delete functionality later
 // if 6th letter press return error
 function updateTryValue(letter){
-    if (tryNum <= 5){
-        if (letter.match(/[a-zA-X]/i) && nowTry.length < 5 && letter != 'Backspace' && letter != 'Enter'){
+    if (tryNum <= answerLength){
+        if (letter.match(/[a-zA-X]/i) && nowTry.length < answerLength && letter != 'Backspace' && letter != 'Enter'){
             nowTry += letter
             console.log('updated in line 81 ')
             console.log(nowTry)
     }
-        else if (letter.match(/[a-zA-X]/i) && nowTry.length >= 5 && letter != 'Backspace' && letter != 'Enter'){
+        else if (letter.match(/[a-zA-X]/i) && nowTry.length >= answerLength && letter != 'Backspace' && letter != 'Enter'){
             console.log('you must press enter or backspace. That letter was not recorded')
             console.log(nowTry)
 
@@ -138,11 +146,11 @@ function updateTryValue(letter){
     
     else if (letter === 'Enter'){
   
-            if (nowTry.length != 5 ){
+            if (nowTry.length != answerLength ){
                 console.log("We still need 5 letters entered to catch them all! ")
                 console.log()
             }
-            else if (nowTry.length === 5){
+            else if (nowTry.length === answerLength){
                 if (nowTry === pokeAnswer){
                     win = true
                     gameOver(win) // need to add variable later
@@ -162,7 +170,7 @@ function updateTryValue(letter){
             nowTry = nowTry.slice(0,-1)
             console.log(`Deleted! your current is ${nowTry}!\n to be the very best try again!`)
     }} 
-    if (tryNum > 5) {
+    if (tryNum > answerLength) {
         win = false
         gameOver(win)
         return;
@@ -199,9 +207,7 @@ function logTry(){ // adding elements in unordered list HTML
 
 }
 
-function updateTryNowVisual(){
-    pass
-}
+
 
 function tryColorHints(splitTry,tryLiEl){
     
