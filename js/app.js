@@ -41,7 +41,8 @@ let tryNum = 1;
 let pokeAnswer = 'BINGO'; //keeping everything uppercase for simplicity
 let nowTry = '';
 const inputElement = document.querySelector('input')
-const tryEl = document.createElement('li');
+// const tryEl = document.createElement('li');
+const tryUl = document.querySelector('#attempts')
 let win 
 let replay
 
@@ -108,6 +109,7 @@ function updateTryValue(letter){
                     return
                 }
                 tryValues[tryNum] = nowTry
+                logTry()
                 tryNum += 1 // moving to next try
                 nowTry = '' //clearing for next try
                 console.log(`cleared nowTry and we are now on try# ${tryNum}`)
@@ -127,16 +129,30 @@ function updateTryValue(letter){
 }}
 
 //
-function updateTry(){ // adding elements in unordered list HTML
-    splitTry = tryValues[tryNum].split()
-    tryEl = splitTry
+function logTry(){ // adding elements in unordered list HTML
+    console.log('logTry')
+    let splitTry = tryValues[tryNum].split("") // creates list of word (B,I,N,G,O)
+    console.log(tryValues[tryNum])
+    console.log(splitTry)
+    let tryLiEl = document.createElement('li')
+    tryLiEl.id = (`try-${tryNum}`)
+    // tryEl = splitTry
     //tryEl.value = splitTry //updates list as each turn
-    spanLetter = tryEl.appendChild(document.createTextNode('span'+""))
-    forEach(tryEl);{
-        tryEl.appendChild(document.createTextNode('span'))
-      
-
+    //spanLetter = tryEl.appendChild(document.createTextNode('span'+""))
+     // creating a span of each letter to alter color in hints()
+    for (let i = 0 ;i < splitTry.length ; i++){ // for each letter not try
+        let charSpan = document.createElement('span')
+        console.log('loop run! 1 letter span!')
+        tryLiEl.appendChild(charSpan)
+        charSpan.textContent = splitTry[i]
+        charSpan.className = ("char-colorbox")
+        charSpan.id = (`try ${tryNum}-char #${i}`)
+       
+        // split up tring, created li for each element in loop, and appened child with ul
+        
+        // queryselector needs to be a step above what im creating so Ul NOT LI or span
     }
+    tryUl.appendChild(tryLiEl)
     //tryHints()
 
 }
@@ -146,11 +162,8 @@ function updateTryNowVisual(){
 }
 
 function tryColorHints(){
-    for(let i;i <= 4; i++){}
-        inorOut = pokeAnswer.includes(tryEl[i])
-        if (inorOut){ // if specific letter is in pokeAnswer 
-            
-        }
+
+    
 
 
             
