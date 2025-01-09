@@ -39,12 +39,15 @@
 const tryValues = {};
 let tryNum = 1;
 let pokeAnswer = 'BINGO'; //keeping everything uppercase for simplicity
+let pokeSplit = pokeAnswer.split("")
 let nowTry = '';
 const inputElement = document.querySelector('input')
 // const tryEl = document.createElement('li');
 const tryUl = document.querySelector('#attempts')
 let win 
 let replay
+
+
 
 
 
@@ -85,7 +88,7 @@ function startAgain (letter){
 // if 6th letter press return error
 function updateTryValue(letter){
     if (tryNum <= 5){
-        if (letter.match(/[a-zA-X]/i) && nowTry.length < 5){
+        if (letter.match(/[a-zA-X]/i) && nowTry.length < 5 && letter != 'Backspace' && letter != 'Enter'){
             nowTry += letter
             console.log('updated in line 81 ')
             console.log(nowTry)
@@ -146,13 +149,15 @@ function logTry(){ // adding elements in unordered list HTML
         tryLiEl.appendChild(charSpan)
         charSpan.textContent = splitTry[i]
         charSpan.className = ("char-colorbox")
-        charSpan.id = (`try ${tryNum}-char #${i}`)
+        charSpan.id = (`try${tryNum}-char-${i}`)
+        
        
         // split up tring, created li for each element in loop, and appened child with ul
         
         // queryselector needs to be a step above what im creating so Ul NOT LI or span
     }
     tryUl.appendChild(tryLiEl)
+    tryColorHints(splitTry,tryLiEl)
     //tryHints()
 
 }
@@ -161,9 +166,31 @@ function updateTryNowVisual(){
     pass
 }
 
-function tryColorHints(){
-
+function tryColorHints(splitTry,tryLiEl){
     
+    for (let i=0; i < pokeSplit.length; i++){
+    let currentSpan = tryLiEl.querySelector(`#try${tryNum}-char-${i}`)
+    if (currentSpan){
+        if (pokeSplit.includes(splitTry[i]) && pokeSplit[i]=== splitTry[i]){
+            console.log('COLOR HINT: G')
+            currentSpan.style.backgroundColor = 'green'
+            
+        }
+        else if (pokeSplit.includes(splitTry[i]) && pokeSplit[i]!== splitTry[i]){
+            //yellow
+            console.log('COLOR HINT: Y')
+            currentSpan.style.backgroundColor = 'yellow'
+        }
+        else { // letter is not in pokeAnswer
+            //grey
+            console.log('COLOR HINT: Grey')
+            currentSpan.style.backgroundColor = 'grey'
+
+        }}
+    else {
+        console.log(`Span not found for try${tryNum}-char-${i}`)
+    }}
+
 
 
             
@@ -199,7 +226,8 @@ function gameOver(){
     
 }
 
-function gameOverAnimation(){
-
+function gameOverAnime(){
+    winCheer = document.querySelector('.victory')
+    winCheer.textContent = 'WE CAUGHT THEM ALL'
+    winCheer.color = 'rainbow'
 }
-
