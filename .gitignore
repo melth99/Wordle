@@ -1,1 +1,9 @@
 Adding gitignore
+
+node_modules/
+.env
+dist
+.vscode/
+.DS_Store
+Thumbs.db
+*.log

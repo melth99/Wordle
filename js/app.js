@@ -46,6 +46,7 @@ const inputElement = document.querySelector('input')
 const tryUl = document.querySelector('#attempts')
 let win 
 let replay
+const baseURL = "https://pokeapi.co/api/v2/"
 
 
 
@@ -70,11 +71,21 @@ document.addEventListener('keydown',function(e) {
         gameOver(e.key)
     */
  } )
+ fetchPokeName()
 
 function fetchPokeName (){
 // helpful vid https://www.youtube.com/watch?v=zOrejGF0oBA&ab_channel=GuilhermeDatilio  
+    fetch(baseURL + 'pokemon?limit=493')
+    .then(response => response.json())
+    .then(data => {console.log(data)
+    })
+    .catch(error  => {
+        console.error('Error',error)})
+
  
 }
+
+
 
 function startAgain (letter){
     console.log('start again f(x) triggered to signal new turn')
@@ -201,17 +212,20 @@ function UpdateAllTriesVisual(){
     
 }
 
-function gameOver(){
+function gameOver(){ // update after pokemon api integration
+    
     console.log('game over!')
 
     if (win === true) {
+        animeIM = `pika pika winner!\n I CHOOSE YOU ${pokeAnswer}`
         console.log('pika pika WINNER!')
         console.log(`I CHOOSE YOU ${pokeAnswer}`)
     }
     else {
         console.log('you didnt catch them all :/')
+        animeIM = `you didn't catch them all :/ \n Team Rocket won :(\n the answer is ${pokeAnswer})` 
     }
-    gameOverAnime()
+    gameOverAnime(animeIM)
     console.log("Would you like to play again? To be the very best, you must try again and again!! It took ash 25  years to become a pokemon master")
     console.log("to play again ! press enter")
         if (replay = true ){
@@ -238,7 +252,7 @@ function gameOverAnime(){
     pokePic.alt = 'pic of pokemon, but for now its just my cat'
     finalbowEl.appendChild(winCheer)
     finalbowEl.appendChild(pokePic)
-    winCheer.innerText= "We caught them all!"
+    winCheer.innerText= animeIM
     winCheer.style.width += width + "px"
     winCheer.style.height += height + "px"
     winCheer.style.backgroundColor = 'magenta'
@@ -254,5 +268,9 @@ function gameOverAnime(){
         clearInterval(growCheer)
     }
     })
+
+function clearScreen(){
+    // to start again we need to remove the new added elements
+}
 
 }
