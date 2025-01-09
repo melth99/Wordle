@@ -230,9 +230,14 @@ function gameOverAnime(){
     let width = 1
     let height = 1
     let winCheer = document.createElement('div')
-    
     let finalbowEl = document.getElementById('final-bow')
+    let pokePic = document.createElement('img')
+    pokePic.style.width = '100%'
+    pokePic.style.height = 'auto'
+    pokePic.src = "https://imgur.com/hX3JNTl"
+    pokePic.alt = 'pic of pokemon, but for now its just my cat'
     finalbowEl.appendChild(winCheer)
+    finalbowEl.appendChild(pokePic)
     winCheer.innerText= "We caught them all!"
     winCheer.style.width += width + "px"
     winCheer.style.height += height + "px"
@@ -243,6 +248,7 @@ function gameOverAnime(){
         height+= 1
         winCheer.style.width = width + "px"
         winCheer.style.height = height + "px"
+        pokePic.style.transform = 'scale(1.5)'
 
     if (width >= 200){
         clearInterval(growCheer)
