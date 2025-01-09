@@ -211,7 +211,7 @@ function gameOver(){
     else {
         console.log('you didnt catch them all :/')
     }
-    // gameOverAnimation()
+    gameOverAnime()
     console.log("Would you like to play again? To be the very best, you must try again and again!! It took ash 25  years to become a pokemon master")
     console.log("to play again ! press enter")
         if (replay = true ){
@@ -227,7 +227,26 @@ function gameOver(){
 }
 
 function gameOverAnime(){
-    winCheer = document.querySelector('.victory')
-    winCheer.textContent = 'WE CAUGHT THEM ALL'
-    winCheer.color = 'rainbow'
+    let width = 1
+    let height = 1
+    let winCheer = document.createElement('div')
+    
+    let finalbowEl = document.getElementById('final-bow')
+    finalbowEl.appendChild(winCheer)
+    winCheer.innerText= "We caught them all!"
+    winCheer.style.width += width + "px"
+    winCheer.style.height += height + "px"
+    winCheer.style.backgroundColor = 'magenta'
+    winCheer.style.overflow = 'hidden' // stops text from going beyond page
+    const growCheer = setInterval(()=> {
+        width+=1
+        height+= 1
+        winCheer.style.width = width + "px"
+        winCheer.style.height = height + "px"
+
+    if (width >= 200){
+        clearInterval(growCheer)
+    }
+    })
+
 }
