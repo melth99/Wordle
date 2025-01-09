@@ -38,7 +38,7 @@
 //variables
 const tryValues = {};
 let tryNum = 1;
-let pokeAnswer = 'BINGO'; //keeping everything uppercase for simplicity
+let pokeAnswer = ''; //keeping everything uppercase for simplicity
 let pokeSplit = pokeAnswer.split("")
 let nowTry = '';
 const inputElement = document.querySelector('input')
@@ -71,18 +71,44 @@ document.addEventListener('keydown',function(e) {
         gameOver(e.key)
     */
  } )
- fetchPokeName()
+ selectPokemon()
 
-function fetchPokeName (){
+function fetchPokeData (pokedexNum){
 // helpful vid https://www.youtube.com/watch?v=zOrejGF0oBA&ab_channel=GuilhermeDatilio  
     fetch(baseURL + 'pokemon?limit=493')
     .then(response => response.json())
-    .then(data => {console.log(data)
+        .then(data => {console.log(data)
+ 
     })
     .catch(error  => {
         console.error('Error',error)})
 
+    fetch(baseURL + `pokemon/${pokedexNum}`)
+    .then(response => response.json())
+    .then(data => {
+            console.log('pokemon data' ,data) // all data on answer pokemon
+           if (data.name) {
+                pokeAnswer = String(data.name)
+                console.log(pokeAnswer)
+           }
+           else {
+                console.log('Issue getting pokeAnswer from json')
+           }
+
+    })
+    .catch(error => {
+        console.log('Error selecting pokemon', error)
+    })
+        
+    
+
  
+}
+function selectPokemon(data){
+    pokedexNum = Math.floor(Math.random() * (494-1) + 1)
+    console.log(pokedexNum)
+    fetchPokeData(pokedexNum)
+
 }
 
 
@@ -119,7 +145,7 @@ function updateTryValue(letter){
             else if (nowTry.length === 5){
                 if (nowTry === pokeAnswer){
                     win = true
-                    gameOver(win) // need to add variable alter
+                    gameOver(win) // need to add variable later
                     return
                 }
                 tryValues[tryNum] = nowTry
