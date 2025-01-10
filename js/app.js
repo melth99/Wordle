@@ -187,7 +187,7 @@ function updateTryValue(letter) {
             tryNowDisplay(nowTry)
         }
         else if (letter.match(/[a-zA-X]/i) && nowTry.length >= answerLength && letter != 'Backspace' && letter != 'Enter') {
-            console.log('you must press enter or backspace. That letter was not recorded')
+            h3El.textContent = `You can only have ${answerLength} letters in an entry. Please press enter or delete`
             console.log(nowTry)
 
         }

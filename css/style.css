@@ -70,14 +70,14 @@ body {
 .char-colorbox{
 
     box-shadow: 0 0 0 2px navy;
-    width: 30px;  /* Increased width */
-    height: 30px; /* Increased height */
+    width: 30px;  
+    height: 30px; 
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5em; /* Increased font size */
-    margin: 5px;   /* Added margin for spacing */
-    padding: 10px; /* Added padding */
+    font-size: 1.5em; 
+    margin: 5px;  
+    padding: 10px; 
     box-sizing: border-box;
 
 
@@ -110,14 +110,13 @@ h1 {
     transform: translateX(-50%);
     width: 400px;
     height: 200px;
-    font-size: 1.7vw;
+    font-size: 1.2vw;
     display: flex;
     font-family: 'Pokemon Solid', sans-serif;
     text-align: center;
     box-sizing: border-box;
     color: yellow;
-    -webkit-text-stroke: 2px navy;
-    text-shadow: -2px -2px 0 blue, 2px -2px 0 blue, -8px 3px 0 blue, 3px 5px 0 blue;
+    -webkit-text-stroke: 1px navy;
     flex-wrap: wrap;
 }
 
@@ -126,14 +125,14 @@ h1 {
   .wordle-image {
     position: relative;
     bottom: 0;
-    width: 80vw; /* 80% of viewport width */
-    max-width: 800px; /* Maximum width */
+    width: 80vw; 
+    max-width: 800px; 
     height: calc(80vh - 20vh); 
     max-height: calc(100vh - 20vh - 100px);
-    max-height: 500px; /* Maximum height */
+    max-height: 500px; 
     justify-self: center;
     background-color: pink;
-    margin-bottom: 20px; /* Add space for keyboard */
+    margin-bottom: 20px; 
     justify-content: center;
     width: 800px;
     height: 500px;
@@ -184,7 +183,6 @@ h1 {
       height: 100%;
       box-sizing: border-box;
       cursor: pointer;
-     /*-webkit-user-select: none; */
       border: 1px solid #444;
   }  
 
