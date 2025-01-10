@@ -357,7 +357,7 @@ function gameOverAnime() {
         h1El.letterSpacing = '50px'
     }
     else
-        h1El.textContent = "Team Rocket Wins!"
+        h1El.textContent = `Team Rocket Wins! ${pokeAnswer}`
     
 
     }
