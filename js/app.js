@@ -163,12 +163,14 @@ function updateTryValue(letter) {
         else if (letter === 'Enter') {
 
             if (nowTry.length != answerLength) {
-                console.log(`We still need ${answerLength} letters entered to catch them all! `)
+                console.log(`We still need ${answerLength} letters total entered to catch them all! `)
+                h3El.textContent = `We still need ${answerLength} letters total entered to catch them all! `
                 console.log()
             }
             else if (nowTry.length === answerLength) {
                 if (nowTry === pokeAnswer) {
                     win = true
+                    tryNowDisplay(nowTry)
                     gameOver(win) // need to add variable later
                     return
                 }
@@ -186,6 +188,7 @@ function updateTryValue(letter) {
         } else if (letter = 'Backspace') {
             nowTry = nowTry.slice(0, -1)
             console.log(`Deleted! your current is ${nowTry}!\n to be the very best try again!`)
+            tryNowDisplay(nowTry)
         }
     }
     if (tryNum > answerLength) {
@@ -283,6 +286,7 @@ function gameOver() { // update after pokemon api integration
     gameOverAnime(animeIM)
     console.log("Would you like to play again? To be the very best, you must try again and again!! It took ash 25  years to become a pokemon master")
     console.log("to play again ! press enter")
+    h1El = ("Play Again?\n Press Enter!")
     if (replay = true) {
         // find another pokeAnswer value
         console.log('Prepare for trouble, and make it double! We are starting again!')

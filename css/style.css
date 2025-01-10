@@ -2,11 +2,14 @@ body {
     background-color: lightblue;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
     margin: 0;
     padding: 20px;
     box-sizing: border-box;
+    padding-bottom: calc(20vh + 20px);
+
 }
 #backdrop {
     z-index: -1;
@@ -22,7 +25,7 @@ body {
     box-shadow: 0 0 0 20px navy;
     width: 80%;
     height: 14%;
-    margin: 100px auto; /* Reduced top margin */
+    margin: 100px auto; 
     background-color: aliceblue;
     letter-spacing: 10%;
     font-size: 1.8em;
@@ -30,7 +33,6 @@ body {
     word-wrap: break-word;
     text-overflow: ellipsis;
     white-space: nowrap;
-    padding: 10px;
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -39,26 +41,45 @@ body {
 }
 #typing, #try {
     background-color: aliceblue;
-    letter-spacing: 30px;
-    font-size: 4em;
+    letter-spacing: 15px;
+    font-size: 3.7em;
 }
-#try{
-    position: relative;
-    padding-top: 100px;
+#try-{
+    display: flex;
+    justify-content: center;
+    gap: 5px;
 
 }
     .wordle-tries {
-        width: 90%;
-        margin-top: 20px;
-        align-self: center;
+        flex-grow: 1;
+        overflow-y: auto;
+        padding: 10px;
     }
 #attempts{
-    display: grid;
+    display: flex;
     align-content: space-evenly;
     justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 1px;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
 }
+
 .char-colorbox{
+
     box-shadow: 0 0 0 2px navy;
+    width: 30px;  /* Increased width */
+    height: 30px; /* Increased height */
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em; /* Increased font size */
+    margin: 5px;   /* Added margin for spacing */
+    padding: 10px; /* Added padding */
+    box-sizing: border-box;
+
 
 }
 
@@ -84,22 +105,22 @@ h1 {
   
 #how-many {
     position: absolute;
-    top: 40px; /* Adjust this value as needed */
+    top: 4px;
     left: 50%;
     transform: translateX(-50%);
     width: 400px;
     height: 200px;
-    font-size: px;
+    font-size: 1.7vw;
+    display: flex;
     font-family: 'Pokemon Solid', sans-serif;
     text-align: center;
     box-sizing: border-box;
     color: yellow;
     -webkit-text-stroke: 2px navy;
-    text-shadow: -5px -5px 0 blue,
-                 3px -3px 0 blue,
-                 -10px 3px 0 blue,
-                 3px 5px 0 blue;
+    text-shadow: -2px -2px 0 blue, 2px -2px 0 blue, -8px 3px 0 blue, 3px 5px 0 blue;
+    flex-wrap: wrap;
 }
+
   
 
   .wordle-image {
@@ -107,15 +128,19 @@ h1 {
     bottom: 0;
     width: 80vw; /* 80% of viewport width */
     max-width: 800px; /* Maximum width */
-    height: 80vh; /* 80% of viewport height */
+    height: calc(80vh - 20vh); 
+    max-height: calc(100vh - 20vh - 100px);
     max-height: 500px; /* Maximum height */
     justify-self: center;
     background-color: pink;
-    margin-bottom: 100px; /* Add space for keyboard */
+    margin-bottom: 20px; /* Add space for keyboard */
     justify-content: center;
     width: 800px;
     height: 500px;
     background-color: pink;
+    height: calc(80vh - 20vh); 
+    overflow-y: auto;
+    padding-bottom: 20vh;
   }
 
 
@@ -124,7 +149,9 @@ h1 {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(255, 192, 203, 0.7); 
+    background-color: rgba(255, 192, 203, 0.7);
+    z-index: 100;
+    height: 20vh; 
   }
 
   
@@ -164,8 +191,8 @@ h1 {
   
   .key--letter {
       line-height: 30 px;
-      height: 3em;
-      width:3em;
+      height: 3vw;
+      width:3vw;
       text-align: center;
       background-color: black;
       text-shadow: black; 
