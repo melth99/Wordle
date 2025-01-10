@@ -23,9 +23,6 @@
   ![JavaScript](https://img.shields.io/badge/-JavaScript-05122A?style=flat&logo=javascript)
   ![HTML5](https://img.shields.io/badge/-HTML5-05122A?style=flat&logo=html5)
   ![CSS3](https://img.shields.io/badge/-CSS-05122A?style=flat&logo=css3)
-  ![Markdown](https://img.shields.io/badge/-Markdown-05122A?style=flat&logo=markdown)
-  ![Git](https://img.shields.io/badge/-Git-05122A?style=flat&logo=git)
-  ![Github](https://img.shields.io/badge/-GitHub-05122A?style=flat&logo=github)
   ![VSCode](https://img.shields.io/badge/-VS_Code-05122A?style=flat&logo=visualstudio)
 
   ## 🙏 Attributions:
@@ -39,21 +36,34 @@
 
 <details open>
   <summary> How to Play! </summary>
+
+ 
     1. Game fetches data from PokeAPI and selects a random Pokemon from GenI-IV.
+
+ 
     2. Enter your guess using the on-screen keyboard or your physical keyboard.
+
+    
     3. Note the hints provided on your first attempt on the keyboard as well as the list of attempts
+    
           Green: Correct letter in the correct position
+          
           Yellow: Correct letter in the wrong position
+          
           Grey: Letter not in the Pokemon's name
+          
+          
     4. Keep trying until you find the Pokemon, or run out of attempts
+
+    
     5. When prompted to play again, press enter to "Catch 'em All!" or quit and surrender to Team Rocket 😢.
+
+    
 </details>
 
 ## :satellite: Upcoming Features
 
 - [⭐] Animations!
-
-- [⭐] Comment functionality on posts to encourage discussion!
 
 - [⭐] Team Rocket Animations!
   
