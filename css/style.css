@@ -1,27 +1,71 @@
 body {
     background-color: lightblue;
-    justify-content: center;
-    display: grid;
-
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
 }
 #backdrop {
     z-index: -1;
     position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 #typing{
-    border: 40px black;
+
+    box-shadow: 0 0 0 20px navy;
+    width: 80%;
+    height: 14%;
+    margin: 100px auto; /* Reduced top margin */
+    background-color: aliceblue;
+    letter-spacing: 10%;
+    font-size: 1.8em;
+    overflow: hidden;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
 #typing, #try {
     background-color: aliceblue;
     letter-spacing: 30px;
-    font-size: 2em;
+    font-size: 4em;
+}
+#try{
+    position: relative;
+    padding-top: 100px;
+
+}
+    .wordle-tries {
+        width: 90%;
+        margin-top: 20px;
+        align-self: center;
+    }
+#attempts{
+    display: grid;
+    align-content: space-evenly;
+    justify-content: center;
+}
+.char-colorbox{
+    box-shadow: 0 0 0 2px navy;
+
 }
 
   
 h1 {
     text-align: center;
-    font-size: 5em;
+    font-size: 4em;
     font-family: monospace;
     padding: auto;
     position: static;
@@ -40,63 +84,56 @@ h1 {
   
 #how-many {
     position: absolute;
-    font-family: 'Pokemon Solid', sans-serif;
-    top: 0;
+    top: 40px; /* Adjust this value as needed */
     left: 50%;
     transform: translateX(-50%);
-    width: 500px;
-    font-size: 40px;
+    width: 400px;
+    height: 200px;
+    font-size: px;
+    font-family: 'Pokemon Solid', sans-serif;
     text-align: center;
-    padding: 10px;
     box-sizing: border-box;
     color: yellow;
     -webkit-text-stroke: 2px navy;
-    text-shadow:  -5px -5px 0 blue,
-    3px -3px 0 blue,
-    -10px 3px 0 blue,
-    3px 5px 0 blue;
-    text-decoration-color:blue: 
+    text-shadow: -5px -5px 0 blue,
+                 3px -3px 0 blue,
+                 -10px 3px 0 blue,
+                 3px 5px 0 blue;
 }
   
 
   .wordle-image {
     position: relative;
-    background-color: pink;
-    padding: 300px;
+    bottom: 0;
+    width: 80vw; /* 80% of viewport width */
+    max-width: 800px; /* Maximum width */
+    height: 80vh; /* 80% of viewport height */
+    max-height: 500px; /* Maximum height */
     justify-self: center;
+    background-color: pink;
+    margin-bottom: 100px; /* Add space for keyboard */
+    justify-content: center;
+    width: 800px;
+    height: 500px;
+    background-color: pink;
   }
-.wordle-tries {
-    padding: 20px;
-}
 
 
   .keyboard {  
-    position: static;
+    position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
-    text-align: center;
-      font-size: 20px;
-      font-family: sans-serif;
-      z-index: 1000;
-      background-color: green;
+    background-color: rgba(255, 192, 203, 0.7); 
   }
 
-  @media (max-width: 600px) {
-    .keyboard {
-        text-align: center;
-        background-color: green;
-        font-size: 14px;
-        font-family: sans-serif;
-        color: orange
-    }
-  }
+  
   
 
   .keyboard__row {
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
+
 
 
  
@@ -110,7 +147,6 @@ h1 {
   .keyboard__row > * {
 
       position: relative;
-      background: #333;
       text-align: center;
       color: #eee;
       float: left;
@@ -123,26 +159,13 @@ h1 {
       cursor: pointer;
      /*-webkit-user-select: none; */
       border: 1px solid #444;
-      box-shadow: 0 0.2em 0 0.05em #222;
-      border-bottom-color: #555;
-  }
+  }  
 
-  
-  .keyboard__row > div:active {
-      background: #2a2a2a;
-      color: #aaa;
-      position: relative;
-      box-shadow: 0 0 0 0.05em orange;
-      display:flex;
-  }
-  
-  #attempts {
-    size: 300px;
-
-  }
   
   .key--letter {
-      line-height: 3em ;
+      line-height: 30 px;
+      height: 3em;
+      width:3em;
       text-align: center;
       background-color: black;
       text-shadow: black; 
