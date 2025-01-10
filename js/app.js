@@ -38,17 +38,7 @@ document.addEventListener('keydown', keydownHandler);
 selectPokemon()
 
 function fetchPokeData(pokedexNum) {
-
-    fetch(baseURL + 'pokemon?limit=493')
-        .then(response => response.json())
-        .then(data => {
-            h3El.textContent = "Pokemon Data Populated GEN1-IV"
-
-        })
-        .catch(error => {
-            h3El.textContent = `Error:${error}`
-        })
-
+    
     fetch(baseURL + `pokemon/${pokedexNum}`)
         .then(response => response.json())
         .then(data => {
@@ -58,6 +48,7 @@ function fetchPokeData(pokedexNum) {
                 if (/^[a-zA-Z]+$/.test(pokeAnswer)) {
                     answerLength = pokeAnswer.length
                     h3El.textContent = `Only ${answerLength} guesses to beat Team Rocket!`
+
                 } else {
                     startAgain()
                 }
