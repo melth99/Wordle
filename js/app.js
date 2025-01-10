@@ -87,7 +87,7 @@ function selectPokemon() {
 
 }
 
-function startAgain(letter) {
+function startAgain() {
    
     tryValues = {};
     tryNum = 1;
