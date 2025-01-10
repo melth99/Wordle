@@ -19,7 +19,6 @@
   |<h3>Team Rocket Victory (We lost) 😢</h3>|![Screenshot 2025-01-10 at 2 00 14 AM](https://github.com/user-attachments/assets/0ae54f62-d6e7-4696-a743-3d750f242e43)
 
   ## :computer: Technologies Used
-  A screenshot of your app's landing page and any other screenshots of interest.
 
   ![JavaScript](https://img.shields.io/badge/-JavaScript-05122A?style=flat&logo=javascript)
   ![HTML5](https://img.shields.io/badge/-HTML5-05122A?style=flat&logo=html5)
@@ -28,14 +27,19 @@
   ![Git](https://img.shields.io/badge/-Git-05122A?style=flat&logo=git)
   ![Github](https://img.shields.io/badge/-GitHub-05122A?style=flat&logo=github)
   ![VSCode](https://img.shields.io/badge/-VS_Code-05122A?style=flat&logo=visualstudio)
-  !=postgresql)
 
+  ## 🙏 Attributions:
+  <details open>
+  <summary>PokeAPI</summary>
+  🧋 https://github.com/PokeAPI/pokeapi
+  <a href="https://github.com/PokeAPI/pokeapi"
+    > [PokeAPI GitHub](https://github.com/PokeAPI/pokeapi) </a>
 
   ## :fire: Getting Started
 
 <details open>
   <summary> How to Play! </summary>
-    1. Game uses PokeAPI to randomly will select a Pokemon from GenI-IV.
+    1. Game fetches data from PokeAPI and selects a random Pokemon from GenI-IV.
     2. Enter your guess using the on-screen keyboard or your physical keyboard.
     3. Note the hints provided on your first attempt on the keyboard as well as the list of attempts
           Green: Correct letter in the correct position
@@ -60,6 +64,5 @@
 <details open>
   <summary> Deployed Link 🧚 </summary>
   <a href="https://melth99.github.io/Wordle/"
-    > https://melth99.github.io/Wordle/ </a
-  >
+    > https://melth99.github.io/Wordle/ </a>
 </details>
