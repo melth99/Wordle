@@ -49,7 +49,10 @@ let win
 let replay
 const baseURL = "https://pokeapi.co/api/v2/"
 
-h3El = document.querySelector("h3")
+const h3El = document.querySelector('#how-many')
+const typeEl = document.querySelector("#typing")
+
+
 
 
 
@@ -119,7 +122,8 @@ function fetchPokeData(pokedexNum) {
 
 
 }
-function tryNowDisplay(){
+function tryNowDisplay(nowTry){
+    typeEl.textContent = nowTry
 
 }
 
@@ -131,8 +135,6 @@ function selectPokemon() {
 
 
 }
-
-
 
 function startAgain(letter) {
     console.log('start again f(x) triggered to signal new turn')
@@ -150,6 +152,7 @@ function updateTryValue(letter) {
             nowTry += letter
             console.log('updated in line 81 ')
             console.log(nowTry)
+            tryNowDisplay(nowTry)
         }
         else if (letter.match(/[a-zA-X]/i) && nowTry.length >= answerLength && letter != 'Backspace' && letter != 'Enter') {
             console.log('you must press enter or backspace. That letter was not recorded')
@@ -175,6 +178,7 @@ function updateTryValue(letter) {
                 nowTry = '' //clearing for next try
                 console.log(`cleared nowTry and we are now on try# ${tryNum}`)
                 console.log(tryValues)
+                tryNowDisplay('')
             }
 
 
