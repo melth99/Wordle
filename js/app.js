@@ -206,6 +206,7 @@ function updateTryValue(letter) {
                     return
                 }
                 tryValues[tryNum] = nowTry
+                h3El.innerText = `Only ${answerLength} guesses to beat Team Rocket!`
                 logTry()
                 tryNum += 1 // moving to next try
                 nowTry = '' //clearing for next try
