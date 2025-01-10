@@ -36,50 +36,54 @@
 //Event Listeners
 
 //variables
-const tryValues = {};
+let tryValues = {};
 let tryNum = 1;
 let pokeAnswer = '';
 let answerLength
 let pokeSplit
+let animeIM
 let nowTry = '';
 const inputElement = document.querySelector('input')
 // const tryEl = document.createElement('li');
 const tryUl = document.querySelector('#attempts')
-let win
+let win = null
 let replay
 const baseURL = "https://pokeapi.co/api/v2/"
 
 const h3El = document.querySelector('#how-many')
 const typeEl = document.querySelector("#typing")
+const redoEl =  document.querySelector('#redo')
+const h1El = document.querySelector('h1')
 
 
 
-
-
-
-
-
-
-// add typing functionality at some point
-document.addEventListener('click', function (event) {
-    const clicked = event.target
+function clickHandler(event) {
+    const clicked = event.target;
     if (clicked.classList.contains('key--letter')) {
         const cletter = clicked.getAttribute('data-char');
-        console.log('Clicked letter:', cletter);
-        updateTryValue(cletter)
+        updateTryValue(cletter);
     }
-})
-document.addEventListener('keydown', function (e) {
+}
+
+function keydownHandler(e) {
     if (e.key.length === 1 && e.key.match(/[a-z]/i)) {
-        updateTryValue(e.key.toUpperCase())
+        updateTryValue(e.key.toUpperCase());
     } else if (e.key === 'Enter' || e.key === 'Backspace') {
-        updateTryValue(e.key)
+        if (win === null) {
+            updateTryValue(e.key);
+        } else {
+            startAgain();
+        }
     }
+}
+//made event listeners functions to allow replay-ability
+
     /*
     if (e.key == 'Enter' && win === true || win === false)
         gameOver(e.key)
     */
-})
+document.addEventListener('click', clickHandler);
+document.addEventListener('keydown', keydownHandler);
 selectPokemon()
 
 function fetchPokeData(pokedexNum) {
@@ -137,8 +141,27 @@ function selectPokemon() {
 }
 
 function startAgain(letter) {
-    console.log('start again f(x) triggered to signal new turn')
-    selectPokemon()
+    //should trigger if player wants to replay or if pokemon selected as a punctuation
+    tryValues = {};
+    tryNum = 1;
+    nowTry = '';
+    win = null;
+
+    // Clear the board
+    tryUl.innerHTML = '';
+    typeEl.textContent = '';
+
+  
+    document.querySelectorAll('.key--letter').forEach(key => {
+        key.style.backgroundColor = '';
+    });
+
+    // re-selects
+    selectPokemon();
+
+
+    document.addEventListener('keydown', keydownHandler);
+    document.addEventListener('click', clickHandler);
 }
 
 // add enter button click functionality later
@@ -147,7 +170,7 @@ function startAgain(letter) {
 //add delete functionality later
 // if 6th letter press return error
 function updateTryValue(letter) {
-    if (tryNum <= answerLength) {
+    if (tryNum <= answerLength && win === null) {
         if (letter.match(/[a-zA-X]/i) && nowTry.length < answerLength && letter != 'Backspace' && letter != 'Enter') {
             nowTry += letter
             console.log('updated in line 81 ')
@@ -161,7 +184,6 @@ function updateTryValue(letter) {
         }
 
         else if (letter === 'Enter') {
-
             if (nowTry.length != answerLength) {
                 console.log(`We still need ${answerLength} letters total entered to catch them all! `)
                 h3El.textContent = `We still need ${answerLength} letters total entered to catch them all! `
@@ -171,7 +193,7 @@ function updateTryValue(letter) {
                 if (nowTry === pokeAnswer) {
                     win = true
                     tryNowDisplay(nowTry)
-                    gameOver(win) // need to add variable later
+                    gameOver(true) // need to add variable later
                     return
                 }
                 tryValues[tryNum] = nowTry
@@ -193,7 +215,7 @@ function updateTryValue(letter) {
     }
     if (tryNum > answerLength) {
         win = false
-        gameOver(win)
+        gameOver(false)
         return;
     }
 }
@@ -234,7 +256,14 @@ function logTry() { // adding elements in unordered list HTML
 function tryColorHints(splitTry, tryLiEl, tryNum) {
    
     pokeSplit = pokeAnswer.split('')
+    const letterCount = {}
+    const guessCount = {}
+    pokeSplit.forEach(letter => {
+        letterCount[letter] = (letterCount[letter] || 0) + 1;
+    });
+
     for (let i = 0; i < answerLength; i++) {
+        guessCount[splitTry[i]] = guessCount[splitTry[i] || 0] +1
         let currentSpan = tryLiEl.querySelector(`#try${tryNum}-char-${i}`)
         let keyEl = document.querySelector(`.key--letter[data-char="${splitTry[i]}"`)
         if (currentSpan) {
@@ -242,8 +271,9 @@ function tryColorHints(splitTry, tryLiEl, tryNum) {
                 console.log('COLOR HINT: G')
                 currentSpan.style.backgroundColor = 'green'
                 keyEl.style.backgroundColor = 'green'
-
-
+                //counting back to make sure its 0 in letterCount
+                // i want letter count to all be 0s end of loop
+                letterCount[i] -= 1
             }
             else if (pokeSplit.includes(splitTry[i]) && pokeSplit[i] !== splitTry[i]) {
                 //yellow
@@ -251,6 +281,7 @@ function tryColorHints(splitTry, tryLiEl, tryNum) {
                 currentSpan.style.backgroundColor = 'yellow'
                 keyEl.style.backgroundColor = 'yellow'
             }
+
             else { // letter is not in pokeAnswer
                 //grey
                 console.log('COLOR HINT: Grey')
@@ -274,7 +305,8 @@ function gameOver() { // update after pokemon api integration
 
     console.log('game over!')
 
-    if (win === true) {
+
+    if (win) {
         animeIM = `pika pika winner!\n I CHOOSE YOU ${pokeAnswer}`
         console.log('pika pika WINNER!')
         console.log(`I CHOOSE YOU ${pokeAnswer}`)
@@ -283,32 +315,58 @@ function gameOver() { // update after pokemon api integration
         console.log('you didnt catch them all :/')
         animeIM = `you didn't catch them all :/ \n Team Rocket won :(\n the answer is ${pokeAnswer})`
     }
-    gameOverAnime(animeIM)
+    h3El.textContent = ("Play Again?\n Press Enter!")
     console.log("Would you like to play again? To be the very best, you must try again and again!! It took ash 25  years to become a pokemon master")
+    typeEl.style.fontSize = '1em'
+    typeEl.style.color = 'black'
+    typeEl.textContent = "Prepare for trouble, and make it double! We let's start again!"
+    typeEl.style.webkitTextStrokeColor = "white"
+    typeEl.style.webkitTextStrokeWidth = ".5px"
+    typeEl.style.letterSpacing = '0px'
+    typeEl.style.fontFamily = 'Pokemon Solid, sans-serif'
+    console.log(typeEl)
     console.log("to play again ! press enter")
-    h1El = ("Play Again?\n Press Enter!")
-    if (replay = true) {
-        // find another pokeAnswer value
-        console.log('Prepare for trouble, and make it double! We are starting again!')
-    }
-    else {
-        console.log("You're really going to let team rocket win?")
-        console.log("Prepare for trouble And make it double! To protect the world from devastation! To unite all peoples within our nation \n To denounce the evils of truth and love! \n To extend our reach to the stars above! \n Jessie!\n James!")
-    }
 
+    gameOverAnime(animeIM)
 
+    // lets not let more inputs mess this up anymore!
+    document.removeEventListener('keydown', keydownHandler);
+    document.removeEventListener('click', clickHandler);
+
+    document.addEventListener('keydown', function restartHandler(e) {
+        if (e.key === 'Enter') {
+
+            startAgain();
+            document.removeEventListener('keydown', restartHandler);
+        }})
 }
 
 function gameOverAnime() {
+    if (win){
+        h1El.textContent = `We caught ${pokeAnswer}!`
+        h1El.letterSpacing = '50px'
+    }
+    else
+        h1El.textContent = "Team Rocket Wins!"
+    
+
+    }
+    /*
     let width = 1
     let height = 1
-    let winCheer = document.createElement('div')
+let winCheer = document.createElement('div')
     let finalbowEl = document.getElementById('final-bow')
     let pokePic = document.createElement('img')
     pokePic.style.width = '100%'
-    pokePic.style.height = 'auto'
-    pokePic.src = "https://imgur.com/hX3JNTl"
-    pokePic.alt = 'pic of pokemon, but for now its just my cat'
+    pokePic.style.height = '100%'
+
+    if (win) {
+        console.log('win')
+        pokePic.src = "https://media1.tenor.com/m/Fxz_yZNQkbcAAAAC/team-rocket-pokemon.gif";
+    }
+    else {
+        pokePic.src = "https://media1.tenor.com/m/Fxz_yZNQkbcAAAAC/team-rocket-pokemon.gif";
+    }
     finalbowEl.appendChild(winCheer)
     finalbowEl.appendChild(pokePic)
     winCheer.innerText = animeIM
@@ -327,9 +385,5 @@ function gameOverAnime() {
             clearInterval(growCheer)
         }
     })
-
-    function clearScreen() {
-        // to start again we need to remove the new added elements
-    }
-
 }
+*/
