@@ -180,50 +180,28 @@ function logTry() {
 
 }
 
-
-
 function tryColorHints(splitTry, tryLiEl, tryNum) {
-    pokeSplit = pokeAnswer.split('')
-    const letterCount = {}
-    const guessCount = {}
-    pokeSplit.forEach(letter => {
-        letterCount[letter] = (letterCount[letter] || 0) + 1;
-    });
+    pokeSplit = pokeAnswer.split('');
     for (let i = 0; i < answerLength; i++) {
-        guessCount[splitTry[i]] = guessCount[splitTry[i] || 0] +1
-        let currentSpan = tryLiEl.querySelector(`#try${tryNum}-char-${i}`)
-        let keyEl = document.querySelector(`.key--letter[data-char="${splitTry[i]}"`)
+        let currentSpan = tryLiEl.querySelector(`#try${tryNum}-char-${i}`);
+        let keyEl = document.querySelector(`.key--letter[data-char="${splitTry[i]}"]`);
         if (currentSpan) {
-            if (pokeSplit.includes(splitTry[i]) && pokeSplit[i] === splitTry[i]) {
-
-                currentSpan.style.backgroundColor = 'green'
-                keyEl.style.backgroundColor = 'green'
-                letterCount[i] -= 1
+            if (splitTry[i] === pokeSplit[i]) {
+                currentSpan.style.backgroundColor = 'green';
+                keyEl.style.backgroundColor = 'green';
+            } else if (pokeSplit.includes(splitTry[i])) {
+                currentSpan.style.backgroundColor = 'yellow';
+                keyEl.style.backgroundColor = 'yellow';
+            } else {
+                currentSpan.style.backgroundColor = 'grey';
+                keyEl.style.backgroundColor = 'grey';
             }
-            else if (pokeSplit.includes(splitTry[i]) && pokeSplit[i] !== splitTry[i]) {
-
-
-                currentSpan.style.backgroundColor = 'yellow'
-                keyEl.style.backgroundColor = 'yellow'
-            }
-
-            else { 
-
-                currentSpan.style.backgroundColor = 'grey'
-                keyEl.style.backgroundColor = 'grey'
-
-            }
-        }
-        else {
-            h3El = `Span not found for try${tryNum}-char-${i}`
+        } else {
+            h3El.textContent = `Span not found for try${tryNum}-char-${i}`;
         }
     }
-
-
-
-
-
 }
+
 
 function gameOver() { 
 
