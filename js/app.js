@@ -148,12 +148,21 @@ function startAgain(letter) {
     win = null;
 
     // Clear the board
+    h1El.textContent = "Who's that Pokemon!"
     tryUl.innerHTML = '';
-    typeEl.textContent = '';
 
+    typeEl.style.fontSize = '';
+    typeEl.style.color = '';
+    typeEl.textContent = '';
+    typeEl.style.webkitTextStrokeColor = '';
+    typeEl.style.webkitTextStrokeWidth = '';
+    typeEl.style.letterSpacing = '';
+    typeEl.style.fontFamily = '';
+    h3El.textContent = '';
   
     document.querySelectorAll('.key--letter').forEach(key => {
         key.style.backgroundColor = '';
+
     });
 
     // re-selects
@@ -254,6 +263,7 @@ function logTry() { // adding elements in unordered list HTML
 
 
 function tryColorHints(splitTry, tryLiEl, tryNum) {
+    console.log('colorhint')
    
     pokeSplit = pokeAnswer.split('')
     const letterCount = {}
