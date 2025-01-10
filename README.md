@@ -51,7 +51,7 @@
 
 ## :satellite: Upcoming Features
 
-- [⭐] Animations of Pokemon sprites when game ends!
+- [⭐] Animations!
 
 - [⭐] Comment functionality on posts to encourage discussion!
 
@@ -60,6 +60,9 @@
 - [⭐] Hints related to Pokemon Type & abilities!
   
 - [⭐] fun Pokemon facts between replays!
+
+- [⭐] Mobile Accessibiliy!
+  
 
 <details open>
   <summary> Deployed Link 🧚 </summary>
