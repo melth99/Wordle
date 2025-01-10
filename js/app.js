@@ -38,7 +38,7 @@ document.addEventListener('keydown', keydownHandler);
 selectPokemon()
 
 function fetchPokeData(pokedexNum) {
-   
+
     fetch(baseURL + 'pokemon?limit=493')
         .then(response => response.json())
         .then(data => {
@@ -55,7 +55,7 @@ function fetchPokeData(pokedexNum) {
             h3El.textContent = "Pokemon Name Data Populated!"
             if (data.name) {
                 pokeAnswer = data.name.toUpperCase()
-                if (/^[a-zA-Z]+$/.test(pokeAnswer)) { 
+                if (/^[a-zA-Z]+$/.test(pokeAnswer)) {
                     answerLength = pokeAnswer.length
                     h3El.textContent = `Only ${answerLength} guesses to beat Team Rocket!`
                 } else {
@@ -75,7 +75,7 @@ function fetchPokeData(pokedexNum) {
 
 
 }
-function tryNowDisplay(nowTry){
+function tryNowDisplay(nowTry) {
     typeEl.textContent = nowTry
 
 }
@@ -88,7 +88,7 @@ function selectPokemon() {
 }
 
 function startAgain() {
-   
+
     tryValues = {};
     tryNum = 1;
     nowTry = '';
@@ -106,7 +106,7 @@ function startAgain() {
     typeEl.style.letterSpacing = '';
     typeEl.style.fontFamily = '';
     h3El.textContent = '';
-  
+
     document.querySelectorAll('.key--letter').forEach(key => {
         key.style.backgroundColor = '';
 
@@ -163,12 +163,12 @@ function updateTryValue(letter) {
     }
 }
 
-function logTry() { 
+function logTry() {
     let splitTry = tryValues[tryNum].split("")
     let tryLiEl = document.createElement('li')
     tryLiEl.id = (`try-${tryNum}`)
 
-    for (let i = 0; i < splitTry.length; i++) { 
+    for (let i = 0; i < splitTry.length; i++) {
         let charSpan = document.createElement('span')
         tryLiEl.appendChild(charSpan)
         charSpan.textContent = splitTry[i]
@@ -176,7 +176,7 @@ function logTry() {
         charSpan.id = (`try${tryNum}-char-${i}`)
     }
     tryUl.appendChild(tryLiEl)
-    tryColorHints(splitTry, tryLiEl,tryNum)
+    tryColorHints(splitTry, tryLiEl, tryNum)
 
 }
 
@@ -203,7 +203,7 @@ function tryColorHints(splitTry, tryLiEl, tryNum) {
 }
 
 
-function gameOver() { 
+function gameOver() {
 
     h3El.textContent = ("Play Again?\n Press Enter!")
     typeEl.style.fontSize = '1em'
@@ -225,17 +225,17 @@ function gameOver() {
 
             startAgain();
             document.removeEventListener('keydown', restartHandler);
-        }})
+        }
+    })
 }
 
 function gameOverAnime() {
-    if (win){
+    if (win) {
         h1El.textContent = `We caught ${pokeAnswer}!`
         h1El.letterSpacing = '50px'
     }
     else
         h1El.textContent = `Team Rocket Wins! ${pokeAnswer}`
-    
 
-    }
-    
+
+}

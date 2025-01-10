@@ -11,6 +11,7 @@ body {
     padding-bottom: calc(20vh + 20px);
 
 }
+
 #backdrop {
     z-index: -1;
     position: fixed;
@@ -20,12 +21,13 @@ body {
     height: 100%;
     object-fit: cover;
 }
-#typing{
+
+#typing {
 
     box-shadow: 0 0 0 20px navy;
     width: 80%;
     height: 14%;
-    margin: 100px auto; 
+    margin: 100px auto;
     background-color: aliceblue;
     letter-spacing: 10%;
     font-size: 1.8em;
@@ -39,23 +41,28 @@ body {
     justify-content: center;
 
 }
-#typing, #try {
+
+#typing,
+#try {
     background-color: aliceblue;
     letter-spacing: 15px;
     font-size: 3.7em;
 }
-#try-{
+
+#try- {
     display: flex;
     justify-content: center;
     gap: 5px;
 
 }
-    .wordle-tries {
-        flex-grow: 1;
-        overflow-y: auto;
-        padding: 10px;
-    }
-#attempts{
+
+.wordle-tries {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+#attempts {
     display: flex;
     align-content: space-evenly;
     justify-content: center;
@@ -67,23 +74,23 @@ body {
     list-style-type: none;
 }
 
-.char-colorbox{
+.char-colorbox {
 
     box-shadow: 0 0 0 2px navy;
-    width: 30px;  
-    height: 30px; 
+    width: 30px;
+    height: 30px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5em; 
-    margin: 5px;  
-    padding: 10px; 
+    font-size: 1.5em;
+    margin: 5px;
+    padding: 10px;
     box-sizing: border-box;
 
 
 }
 
-  
+
 h1 {
     text-align: center;
     font-size: 4em;
@@ -94,15 +101,15 @@ h1 {
     font-family: 'Pokemon Solid', sans-serif;
     color: yellow;
     -webkit-text-stroke: 2px blue;
-    text-shadow:  -7px -7px 0 navy,
-    7px -7px 0 navy,
-    -18px 10px 0 navy,
-    7px 15px 0 navy;
-                          
-                        
+    text-shadow: -7px -7px 0 navy,
+        7px -7px 0 navy,
+        -18px 10px 0 navy,
+        7px 15px 0 navy;
 
-  }
-  
+
+
+}
+
 #how-many {
     position: absolute;
     top: 4px;
@@ -120,85 +127,80 @@ h1 {
     flex-wrap: wrap;
 }
 
-  
 
-  .wordle-image {
+
+.wordle-image {
     position: relative;
     bottom: 0;
-    width: 80vw; 
-    max-width: 800px; 
-    height: calc(80vh - 20vh); 
+    width: 80vw;
+    max-width: 800px;
+    height: calc(80vh - 20vh);
     max-height: calc(100vh - 20vh - 100px);
-    max-height: 500px; 
+    max-height: 500px;
     justify-self: center;
     background-color: pink;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
     justify-content: center;
     width: 800px;
     height: 500px;
     background-color: pink;
-    height: calc(80vh - 20vh); 
+    height: calc(80vh - 20vh);
     overflow-y: auto;
     padding-bottom: 20vh;
-  }
+}
 
 
-  .keyboard {  
+.keyboard {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     background-color: rgba(255, 192, 203, 0.7);
     z-index: 100;
-    height: 20vh; 
-  }
-
-  
-  
-
-  .keyboard__row {
-      display: flex;
-      justify-content: center;
+    height: 20vh;
+}
 
 
 
- 
-  }
- 
-  #one #two #three {
+
+.keyboard__row {
+    display: flex;
+    justify-content: center;
+
+}
+
+#one #two #three {
     height: auto;
-  }
+}
 
- 
-  .keyboard__row > * {
 
-      position: relative;
-      text-align: center;
-      color: #eee;
-      float: left;
-      border-radius: 0.3em;
-      margin: 0.2em;
-      padding: 0.2em;
-      width: 3.3em;
-      height: 100%;
-      box-sizing: border-box;
-      cursor: pointer;
-      border: 1px solid #444;
-  }  
+.keyboard__row>* {
 
-  
-  .key--letter {
-      line-height: 30 px;
-      height: 3vw;
-      width:3vw;
-      text-align: center;
-      background-color: black;
-      text-shadow: black; 
-  }
-  
- 
-  .keyboard > .keyboard__row {
+    position: relative;
+    text-align: center;
+    color: #eee;
+    float: left;
+    border-radius: 0.3em;
+    margin: 0.2em;
+    padding: 0.2em;
+    width: 3.3em;
+    height: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: 1px solid #444;
+}
+
+
+.key--letter {
+    line-height: 30 px;
+    height: 3vw;
+    width: 3vw;
+    text-align: center;
+    background-color: black;
+    text-shadow: black;
+}
+
+
+.keyboard>.keyboard__row {
     text-align: center;
 }
-  
- 
