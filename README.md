@@ -71,6 +71,8 @@
   
 - [⭐] fun Pokemon facts between replays!
 
+- [⭐] Implement a light vs dark mode!
+
 - [⭐] Mobile Accessibiliy!
   
 
